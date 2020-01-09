@@ -5,9 +5,12 @@ import os.path
 import argparse
 from markov import compare_models
 from markov import train_char_model
+from functools import lru_cache
 
 
+@lru_cache()
 def read_models(models_root):
+    models = []
     for fn in os.listdir(models_root):
         path = os.path.join(models_root, fn)
         if not os.path.isfile(path) or not fn.endswith(".json"):
@@ -18,7 +21,9 @@ def read_models(models_root):
 
         model_name = str(fn).rsplit(".", 1)[0]
 
-        yield model_name, model
+        models.append((model_name, model))
+
+    return models
 
 
 def classify(what, models_root, print_details=True):
@@ -26,7 +31,7 @@ def classify(what, models_root, print_details=True):
 
     results = []
     for model_name, model in read_models(models_root):
-        result = compare_models(classified_model, model)
+        result = compare_models(classified_model, model, 1)
 
         if print_details:
             print(model_name, result)

@@ -52,7 +52,8 @@ def generate_text(model, order, nletters=1000):
     return "".join(out)
 
 
-def compare_models(classified, lang_model, use_penalty=True):
+
+def compare_models(classified, lang_model, penalty=0):
     score = 0
     matches = 0
 
@@ -60,10 +61,10 @@ def compare_models(classified, lang_model, use_penalty=True):
         lang_model_probabilities = lang_model.get(substr)
 
         if lang_model_probabilities is None:
+            score -= penalty
             continue
 
         matches += 1
-
         lang_model_prob_dict = dict(lang_model_probabilities)
 
         for char, prob in probabilities:
@@ -74,7 +75,7 @@ def compare_models(classified, lang_model, use_penalty=True):
                     score += 1.0 - abs(lang_model_prob - prob)
                 else:
                     score += 1.0 - abs(prob - lang_model_prob)
-            elif use_penalty:
-                score -= 1  # penalty for not found, helps to create bigger difference
+            else:
+                score -= penalty
 
     return score / matches
