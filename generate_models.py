@@ -30,7 +30,7 @@ if __name__ == '__main__':
     parser.add_argument(
         "-d",
         "--datasets",
-        default=os.path.join(os.path.dirname(__file__), "models"),
+        default=os.path.join(os.path.dirname(__file__), "datasets"),
         help="Path to the directory with datasets. Default %(default)s."
     )
     parser.add_argument(
