@@ -45,6 +45,12 @@ if __name__ == '__main__':
         help="Print details."
     )
     parser.add_argument(
+        "-m",
+        "--models",
+        default=os.path.join(os.path.dirname(__file__), "models"),
+        help="Path to the directory with models. Default %(default)s."
+    )
+    parser.add_argument(
         "filename"
     )
     args = parser.parse_args()
@@ -58,4 +64,4 @@ if __name__ == '__main__':
         sys.stderr.write("`%s` not found.\n" % args.filename)
         sys.exit(1)
 
-    print(classify(what, "models", args.verbose))
+    print(classify(what, args.models, args.verbose))

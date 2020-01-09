@@ -1,4 +1,5 @@
 #! /usr/bin/env python3
+import argparse
 import os
 import os.path
 import json
@@ -23,8 +24,21 @@ def generate_models(datasets_root, models_root):
         with open(os.path.join(models_root, model_name), "w") as f:
             f.write(json.dumps(model))
 
-    print("done")
-
 
 if __name__ == '__main__':
-    generate_models("datasets", "models")
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "-d",
+        "--datasets",
+        default=os.path.join(os.path.dirname(__file__), "models"),
+        help="Path to the directory with datasets. Default %(default)s."
+    )
+    parser.add_argument(
+        "-m",
+        "--models",
+        default=os.path.join(os.path.dirname(__file__), "models"),
+        help="Path to the directory with models. Default %(default)s."
+    )
+    args = parser.parse_args()
+
+    generate_models(args.datasets, args.models)
