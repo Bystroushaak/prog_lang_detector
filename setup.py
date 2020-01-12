@@ -25,5 +25,11 @@ setup(
 
         "Topic :: Software Development :: Libraries",
         "Topic :: Software Development :: Libraries :: Python Modules",
-    ]
+    ],
+    entry_points={
+        'console_scripts': [
+            'prog_lang_detector=prog_lang_detector.classify:main',
+            'prog_lang_generate_models=prog_lang_detector.generate_models:main',
+        ],
+    }
 )

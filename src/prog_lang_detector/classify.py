@@ -41,7 +41,7 @@ def classify(what, models_root, print_details=True):
     return max(results)[1]
 
 
-if __name__ == '__main__':
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "-v",
@@ -70,3 +70,7 @@ if __name__ == '__main__':
         sys.exit(1)
 
     print(classify(what, args.models, args.verbose))
+
+
+if __name__ == '__main__':
+    main()

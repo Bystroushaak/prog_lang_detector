@@ -25,7 +25,7 @@ def generate_models(datasets_root, models_root):
             f.write(json.dumps(model))
 
 
-if __name__ == '__main__':
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "-d",
@@ -42,3 +42,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     generate_models(args.datasets, args.models)
+
+
+if __name__ == '__main__':
+    main()
