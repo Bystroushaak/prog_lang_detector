@@ -1,2 +1,2 @@
 include README.md LICENSE
-recursive-include models *
+recursive-include src/prog_lang_detector/models/ *
