@@ -8,6 +8,9 @@ from markov import train_char_model
 from functools import lru_cache
 
 
+MODELS_PATH = os.path.join(os.path.dirname(__file__), "models")
+
+
 @lru_cache()
 def read_models(models_root):
     models = []
@@ -26,7 +29,7 @@ def read_models(models_root):
     return models
 
 
-def classify(what, models_root, print_details=True):
+def classify(what, models_root=MODELS_PATH, print_details=True):
     classified_model = train_char_model(what, 4)
 
     results = []
@@ -52,7 +55,7 @@ def main():
     parser.add_argument(
         "-m",
         "--models",
-        default=os.path.join(os.path.dirname(__file__), "models"),
+        default=MODELS_PATH,
         help="Path to the directory with models. Default %(default)s."
     )
     parser.add_argument(

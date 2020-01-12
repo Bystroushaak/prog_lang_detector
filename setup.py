@@ -7,7 +7,7 @@ LONG_DESCRIPTION = "\n\n".join([
 
 setup(
     name='prog_lang_detector',
-    version='0.1',
+    version='0.2',
     packages=find_packages('src'),
     package_dir={'': 'src'},
     include_package_data=True,
